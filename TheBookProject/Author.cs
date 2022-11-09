@@ -35,13 +35,33 @@ namespace TheBookProject
             MiddleName = "";
         }
 
+        public Author(Author otherObj)
+        {
+            FirstName = otherObj.FirstName;
+            LastName = otherObj.LastName;
+            MiddleName = otherObj.MiddleName;
+        }
+
         public Author(string firstName, string middleName, string lastName)
         {
             FirstName = firstName;
             MiddleName = middleName;
             LastName = lastName;
         }
-        
+
+        public override string ToString()
+        {
+            return $"{FirstName} {MiddleName} {LastName}";
+        }
+
+        public bool Equals(Author otherObj)
+
+        {
+            return FirstName == otherObj.FirstName && 
+                    MiddleName == otherObj.MiddleName && 
+                    LastName == otherObj.LastName;   
+        }
+
         /*
         public string GetMiddleName()
         {

@@ -58,7 +58,7 @@
             */
 
 
-            var book = new Book();
+           /*
 
             Console.Write("What is the author's first name? ");
 
@@ -72,10 +72,37 @@
 
             var lastName = Console.ReadLine();
 
+            Book book = new Book('H', 200, "aefd", 50.5, true, firstName, middleName,lastName);
 
-            book.SetAuthor(firstName, middleName, lastName);
+           
 
-            Console.WriteLine(book.GetAllOfAuthorsInfo());
+            Console.WriteLine(book);
+           */
+            //book2 contains some memory address where the location of all the stuff for book2 is stored
+            Book book2 = new Book(); //34
+            Book book3 = new Book(); // AF
+
+            //shallow copy 
+            Book book4 = new Book(book3);
+
+            book3.SetTitle("Java!");
+
+            if(book4.Equals(book3))
+            {
+                Console.WriteLine("They are equal!");
+            }
+            else
+            {
+                Console.WriteLine("They are not equal!");
+            }
+
+
+
+            Console.WriteLine(book4);
+
+            Console.WriteLine(book3);
+
+
 
         }
     }

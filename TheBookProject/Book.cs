@@ -52,6 +52,16 @@ namespace TheBookProject
             //SetAuthor(firstName, middleName, lastName);
         }
 
+        public Book(Book otherObj)
+        {
+            this.genre = otherObj.genre;
+            this.numberOfPages = otherObj.numberOfPages;
+            SetTitle(otherObj.title);
+            this.msrp = otherObj.msrp;
+            this.isNew = otherObj.isNew;
+            author = new Author(otherObj.author);
+        }
+
         public string GetTitle()
         {
             return title;
@@ -134,16 +144,75 @@ namespace TheBookProject
 
         public string GetAllOfAuthorsInfo()
         {
-            string info = "";
+            return author.ToString();
+        }
 
-            info += $"\nFirst Name: {author.FirstName}";
+        public override string ToString()
+        {
 
-            if(author.MiddleName != "")
-                info += $"\nMiddle Name: {author.MiddleName}";
+            /*genre = 'E';
+            numberOfPages = 1;
+            SetTitle("No Name");
+            msrp = 1.0; 
+            isNew = false;
+            author = new Author();
+            */
 
-            info += $"\nLast Name: {author.LastName}";
+            string msg = "";
 
-            return info;
+            if(genre == 'E')
+            {
+                msg += "Genre: Educational \n";
+            }
+            else if (genre == 'A')
+            {
+                msg += "Genre: Action \n";
+            }
+            else if (genre == 'R')
+            {
+                msg += "Genre: Romance \n";
+            }
+            else
+            {
+                msg += "Genre: Not Defined \n";
+            }
+
+            msg += "Number of Pages: " + numberOfPages + "\n";
+
+            msg += "Title: " + title + "\n";
+
+            msg += "MSRP: " + msrp.ToString("C") + "\n";
+
+            if(isNew)
+            {
+                msg += "This book is new! \n";
+            }
+            else
+            {
+                msg += "This book is used!\n";
+            }
+
+            msg += "Author: " + author.ToString() + "\n";
+
+            return msg;
+
+        }
+
+        public bool Equals(Book otherObj)
+        {
+            if(this.genre == otherObj.genre && 
+                this.numberOfPages == otherObj.numberOfPages &&
+                this.title == otherObj.title &&
+                this.msrp == otherObj.msrp &&
+                this.isNew == otherObj.isNew &&
+                this.author.Equals(otherObj.author))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
